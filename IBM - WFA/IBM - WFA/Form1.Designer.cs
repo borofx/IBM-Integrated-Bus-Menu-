@@ -49,7 +49,7 @@
             TopPanel.Controls.Add(panel3);
             TopPanel.Location = new Point(241, 0);
             TopPanel.Name = "TopPanel";
-            TopPanel.Size = new Size(903, 33);
+            TopPanel.Size = new Size(903, 47);
             TopPanel.TabIndex = 1;
             // 
             // panel3
@@ -77,6 +77,7 @@
             Controls.Add(TabsPanel);
             FormBorderStyle = FormBorderStyle.None;
             Name = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             Load += Form1_Load;
             TopPanel.ResumeLayout(false);
