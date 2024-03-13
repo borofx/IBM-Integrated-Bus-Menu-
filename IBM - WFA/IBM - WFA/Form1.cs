@@ -10,7 +10,7 @@ namespace IBM___WFA
         }
 
 
-        //метод за визуализация на текущото меню
+        //method for visualization the current menu
         private void SetActiveUserControl(UserControl userControl)
         {
             MainPanel.Controls.Clear();
