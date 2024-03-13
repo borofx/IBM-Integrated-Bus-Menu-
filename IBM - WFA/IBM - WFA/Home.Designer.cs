@@ -45,7 +45,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(panel1);
             Name = "Home";
-            Size = new Size(903, 603);
+            Size = new Size(885, 598);
             ResumeLayout(false);
         }
 

@@ -9,6 +9,22 @@ CREATE TABLE firmi (
 );
 
 
+CREATE TABLE razpisaniq (
+  id_marshrut int IDENTITY(1,1) NOT NULL PRIMARY KEY,
+  zaminava_ot varchar(40) NOT NULL,
+  pristiga_v varchar(40) NOT NULL,
+  chas_pristigane time NOT NULL,
+  chas_zaminavane time NOT NULL
+);
+
+
+CREATE TABLE razpisaniq_firmi (
+  id_marshrut int NOT NULL,
+  id_firma int NOT NULL,
+  CONSTRAINT FK_firmi FOREIGN KEY (id_firma) REFERENCES firmi (id_firma),
+  CONSTRAINT FK_razpisaniq FOREIGN KEY (id_marshrut) REFERENCES razpisaniq (id_marshrut)
+);
+
 INSERT INTO firmi (ime) 
 VALUES ('Arsenal'),
 ('Metro Transit'),
@@ -19,20 +35,7 @@ VALUES ('Arsenal'),
 ('Ivan Transit');
 
 
-CREATE TABLE razpisaniq (
-  id_marshrut int IDENTITY(1,1) NOT NULL PRIMARY KEY,
-  zaminava_ot varchar(40) NOT NULL,
-  pristiga_v varchar(40) NOT NULL,
-  chas_pristigane time NOT NULL,
-  chas_zaminavane time NOT NULL
-);
 
-CREATE TABLE razpisaniq_firmi (
-  id_marshrut int NOT NULL,
-  id_firma int NOT NULL,
-  CONSTRAINT FK_firmi FOREIGN KEY (id_firma) REFERENCES firmi (id_firma),
-  CONSTRAINT FK_razpisaniq FOREIGN KEY (id_marshrut) REFERENCES razpisaniq (id_marshrut)
-);
 INSERT INTO razpisaniq (zaminava_ot, pristiga_v, chas_pristigane, chas_zaminavane)
 VALUES 
     ('Sofia', 'Varna', '12:45:00', '20:45:00'),
@@ -46,7 +49,10 @@ VALUES
     ('Montana ', 'Yambol ', '12:25:00', '19:26:00'),
     ('Kyustendil', 'Silistra', '11:50:00', '18:50:00');
 
+
+
+
 INSERT INTO razpisaniq_firmi (id_marshrut, id_firma)
 VALUES 
-    (4,1),(5,2),(6,3),(7,4),(8,5),
-    (9,1),(10,2),(11,3),(12,4),(13,5);
+    (1,1),(2,2),(3,3),(4,4),(5,5),
+    (6,1),(7,2),(8,3),(9,4),(10,5);
