@@ -38,6 +38,7 @@
             button1 = new Button();
             panel3 = new Panel();
             MainPanel = new Panel();
+            button5 = new Button();
             TabsPanel.SuspendLayout();
             TopPanel.SuspendLayout();
             SuspendLayout();
@@ -45,6 +46,7 @@
             // TabsPanel
             // 
             TabsPanel.BackColor = SystemColors.WindowFrame;
+            TabsPanel.Controls.Add(button5);
             TabsPanel.Controls.Add(button4);
             TabsPanel.Controls.Add(button3);
             TabsPanel.Controls.Add(SidePanel);
@@ -60,6 +62,7 @@
             button4.FlatAppearance.BorderSize = 0;
             button4.FlatStyle = FlatStyle.Flat;
             button4.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            button4.ForeColor = SystemColors.Control;
             button4.Image = (Image)resources.GetObject("button4.Image");
             button4.Location = new Point(12, 107);
             button4.Name = "button4";
@@ -76,6 +79,7 @@
             button3.FlatAppearance.BorderSize = 0;
             button3.FlatStyle = FlatStyle.Flat;
             button3.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            button3.ForeColor = SystemColors.Control;
             button3.Image = (Image)resources.GetObject("button3.Image");
             button3.Location = new Point(12, 239);
             button3.Name = "button3";
@@ -100,6 +104,7 @@
             button2.FlatAppearance.BorderSize = 0;
             button2.FlatStyle = FlatStyle.Flat;
             button2.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            button2.ForeColor = SystemColors.Control;
             button2.Image = (Image)resources.GetObject("button2.Image");
             button2.Location = new Point(12, 173);
             button2.Name = "button2";
@@ -151,6 +156,22 @@
             MainPanel.Size = new Size(903, 603);
             MainPanel.TabIndex = 2;
             // 
+            // button5
+            // 
+            button5.BackColor = SystemColors.WindowFrame;
+            button5.FlatAppearance.BorderSize = 0;
+            button5.FlatStyle = FlatStyle.Flat;
+            button5.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            button5.ForeColor = SystemColors.Control;
+            button5.Image = (Image)resources.GetObject("button5.Image");
+            button5.Location = new Point(12, 300);
+            button5.Name = "button5";
+            button5.Size = new Size(227, 61);
+            button5.TabIndex = 2;
+            button5.Text = "     Info";
+            button5.TextImageRelation = TextImageRelation.ImageBeforeText;
+            button5.UseVisualStyleBackColor = false;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -181,5 +202,6 @@
         private Panel SidePanel;
         private Button button3;
         private Button button4;
+        private Button button5;
     }
 }

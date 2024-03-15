@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <Folder Include="Data\Models\" />
+    <Folder Include="Business\" />
   </ItemGroup>
 
   <ItemGroup>

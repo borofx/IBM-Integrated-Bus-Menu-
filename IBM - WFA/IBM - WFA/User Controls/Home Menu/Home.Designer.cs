@@ -42,7 +42,7 @@
             // 
             panel1.BackColor = SystemColors.WindowFrame;
             panel1.Controls.Add(pictureBox1);
-            panel1.Location = new Point(87, 0);
+            panel1.Location = new Point(647, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(179, 203);
             panel1.TabIndex = 0;
@@ -62,7 +62,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Showcard Gothic", 48F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(303, 93);
+            label1.Location = new Point(69, 108);
             label1.Name = "label1";
             label1.Size = new Size(533, 98);
             label1.TabIndex = 1;
@@ -72,7 +72,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Showcard Gothic", 48F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(473, 231);
+            label2.Location = new Point(239, 246);
             label2.Name = "label2";
             label2.Size = new Size(193, 98);
             label2.TabIndex = 2;
@@ -82,7 +82,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Showcard Gothic", 48F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(439, 369);
+            label3.Location = new Point(205, 384);
             label3.Name = "label3";
             label3.Size = new Size(260, 98);
             label3.TabIndex = 3;
