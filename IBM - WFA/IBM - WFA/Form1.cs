@@ -1,17 +1,22 @@
+using IBM___WFA.User_Controls.Companies_Menu;
+
 namespace IBM___WFA
 {
     public partial class Form1 : Form
     {
+        private Home home = new Home();
+        private Companies companies = new Companies();
+
         public Form1()
         {
             InitializeComponent();
-            Home home = new Home();
+            
             SetActiveUserControl(home);
             SetSidePanelPostition(button4);
         }
 
 
-        //method for visualization the current menu
+        //метод за визуализиране на текущото меню
         private void SetActiveUserControl(UserControl userControl)
         {
             MainPanel.Controls.Clear();
@@ -19,7 +24,7 @@ namespace IBM___WFA
             MainPanel.Controls.Add(userControl);
         }
 
-
+        //метод за задаване на позицията на страничното меню
         private void SetSidePanelPostition(Button button)
         {
             SidePanel.Height = button.Height;
@@ -46,11 +51,13 @@ namespace IBM___WFA
         private void button2_Click(object sender, EventArgs e)
         {
             SetSidePanelPostition(button2);
+            SetActiveUserControl(companies);
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             SetSidePanelPostition(button4);
+            SetActiveUserControl(home);
         }
     }
 }

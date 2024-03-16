@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using IBM___WFA.Data.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace IBM___WFA.Data.Models;
+namespace IBM___WFA.Data;
 
 public partial class RazpisanieContext : DbContext
 {
