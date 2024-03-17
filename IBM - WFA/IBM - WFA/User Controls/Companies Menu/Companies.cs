@@ -91,16 +91,25 @@ namespace IBM___WFA.User_Controls.Companies_Menu
 
             if (controller.Firm_Exist(name))
             {
-                MessageBox.Show("The firm already exist");
+                MessageBox.Show("The companie already exist");
             }
 
             else
             {
                 Firmi new_Firm = new Firmi();
-                new_Firm.Ime = name;
-                controller.AddFirm(new_Firm);
-                MessageBox.Show("The firm is added successfully");
-                UpdateGrid();
+
+                if (name != null &&name!="")
+                {
+                    new_Firm.Ime = name;
+                    controller.AddFirm(new_Firm);
+                    MessageBox.Show("The companie is added successfully");
+                    UpdateGrid();
+                }
+
+                else
+                {
+                    MessageBox.Show("Enter valid name");
+                }
             }
         }
 
@@ -112,12 +121,12 @@ namespace IBM___WFA.User_Controls.Companies_Menu
             if (controller.Firm_Exist(name))
             {
                 controller.RemoveFirm(name);
-                MessageBox.Show("The firm was deleted successfully");
+                MessageBox.Show("The companie was deleted successfully");
                 UpdateGrid();
             }
             else
             {
-                MessageBox.Show("The firm is not found!");
+                MessageBox.Show("The companie is not found!");
             }
 
         }
@@ -135,14 +144,24 @@ namespace IBM___WFA.User_Controls.Companies_Menu
             }
             while (!int.TryParse(input, out id));
 
-            string name = Interaction.InputBox("Enter name");
+            if (controller.Firm_Exist(id))
+            {
+                string name = Interaction.InputBox("Enter name");
 
-            Firmi firm = new Firmi();
-            firm.IdFirma = id;
-            firm.Ime = name;
-            controller.UpdateFirm(firm);
-            MessageBox.Show("The update was successfull");
-            UpdateGrid();
+                Firmi firm = new Firmi();
+
+                firm.IdFirma = id;
+                firm.Ime = name;
+
+                controller.UpdateFirm(firm);
+                MessageBox.Show("The update was successfull");
+                UpdateGrid();
+            }
+            else
+            {
+                MessageBox.Show("There is no companie it this id");
+            }
+            
             
         }
 

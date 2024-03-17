@@ -1,5 +1,6 @@
 ﻿using IBM___WFA.Data;
 using IBM___WFA.Data.Models;
+using IBM___WFA.User_Controls.Schedule_Menu;
 using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace IBM___WFA.Business
 {
@@ -98,7 +100,7 @@ namespace IBM___WFA.Business
         }
 
 
-        //метод за проверка дали фирма съществува
+        //методи за проверка дали фирма съществува
         public bool Firm_Exist(string name)
         {
             using(context = new RazpisanieContext())
@@ -111,6 +113,19 @@ namespace IBM___WFA.Business
                 return exist;
             }
             
+        }
+
+        public bool Firm_Exist(int id)
+        {
+            using(context= new RazpisanieContext())
+            {
+                bool exists = false;
+                foreach(var item in context.Firmis)
+                {
+                    if(item.IdFirma==id)exists = true;
+                }
+                return exists;
+            }
         }
 
 
@@ -141,8 +156,160 @@ namespace IBM___WFA.Business
 
         //методи за таблица разписания
 
+        //метод за добавяне на разписание
+        public void AddSchedule(Razpisaniq razpisanie)
+        {
+            using(context=new RazpisanieContext())
+            {
+                //проверяваме дали вече съществува такова разписание
+                bool Already_Exist = false;
+
+                foreach (var item in context.Razpisaniqs)
+                {
+                    if (item == razpisanie) Already_Exist = true;
+                }
+
+                if (!Already_Exist)
+                {
+                    context.Razpisaniqs.Add(razpisanie);
+                    context.SaveChanges();
+                }
+            }
+        }
 
 
+
+        //методи за проверка дали разписанието вече съществува
+        public bool Schedule_Exist(Razpisaniq razpisanie)
+        {
+            using (context = new RazpisanieContext())
+            {
+                bool exist = false;
+                foreach (var item in context.Razpisaniqs)
+                {
+                    if (item == razpisanie) exist = true;
+                }
+                return exist;
+            }
+
+        }
+
+        public bool Schedule_Exist(int id)
+        {
+            using(context= new RazpisanieContext())
+            {
+                bool exist = false;
+                foreach(var razpisanie in context.Razpisaniqs)
+                {
+                    if(razpisanie.IdMarshrut==id)exist = true;
+                }
+                return exist;
+            }
+        }
+
+
+
+
+
+        //метод за извличане на всички разписания
+        public List<Razpisaniq> GetAllSchedules()
+        {
+            using(context= new RazpisanieContext())
+            {
+                return context.Razpisaniqs.ToList();
+            }
+        }
+
+
+
+
+        //метод за изтривавне на разписание
+        public void DeleteSchedule(int id)
+        {
+            using(context=new RazpisanieContext())
+            {
+                var Razpisaniq = context.Razpisaniqs.ToList();
+                foreach (var razpisanie in Razpisaniq)
+                {
+                    if(razpisanie.IdMarshrut== id)
+                        context.Razpisaniqs.Remove(razpisanie);
+                        context.SaveChanges();
+                }
+
+                var RazpisaniqFirmis=context.RazpisaniqFirmis.ToList();
+                foreach(var razpisaniefirma in RazpisaniqFirmis)
+                {
+                    if(razpisaniefirma.IdMarshrut== id)
+                    {
+                        context.RazpisaniqFirmis.Remove(razpisaniefirma);
+                        context.SaveChanges();
+                    }
+                }
+            }
+        }
+
+
+
+        //метод за ъпдейтване на разписание
+        public void UpdateSchedule(Razpisaniq razpisanie)
+        {
+            using (context = new RazpisanieContext())
+            {
+
+                var item = context.Razpisaniqs.Find(razpisanie.IdMarshrut);
+                if (item != null)
+                {
+                    context.Entry(item).CurrentValues.SetValues(razpisanie);
+                    context.SaveChanges();
+                }
+            }
+ 
+        }
+
+
+
+
+
+        //метод за сортиране на разписанията по град на заминаване
+        public List<Razpisaniq> SortRazpisaniqByZaminavaOt()
+        {
+            using(context= new RazpisanieContext())
+            {
+                return context.Razpisaniqs.OrderBy(x=>x.ZaminavaOt).ToList();
+            }
+        }
+
+
+        //метод за сортиране на разписанията по град на пристигане
+        public List<Razpisaniq> SortRazpisaniqByPristigaV()
+        {
+            using(context=new RazpisanieContext())
+            {
+                return context.Razpisaniqs.OrderBy(x => x.PristigaV).ToList();
+            }
+        }
+
+
+
+        //метод за сортиране на разписанията по час на заминаване
+        public List<Razpisaniq> SortRazpisaniqByChasZaminavane()
+        {
+            using(context=new RazpisanieContext())
+            {
+                return context.Razpisaniqs.OrderBy(x=>x.ChasZaminavane).ToList();
+            }
+        }
+
+
+
+        //метод за сортиране на разписанията по час на пристигане
+        public List<Razpisaniq> SortRazpisaniqByChasPristigane()
+        {
+            using (context = new RazpisanieContext())
+            {
+                return context.Razpisaniqs.OrderBy(x => x.ChasPristigane).ToList();
+            }
+        }
 
     }
 }

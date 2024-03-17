@@ -1,4 +1,5 @@
 using IBM___WFA.User_Controls.Companies_Menu;
+using IBM___WFA.User_Controls.Schedule_Menu;
 
 namespace IBM___WFA
 {
@@ -6,6 +7,7 @@ namespace IBM___WFA
     {
         private Home home = new Home();
         private Companies companies = new Companies();
+        private Schedule schedule = new Schedule();
 
         public Form1()
         {
@@ -46,6 +48,7 @@ namespace IBM___WFA
         private void button3_Click(object sender, EventArgs e)
         {
             SetSidePanelPostition(button3);
+            SetActiveUserControl(schedule);
         }
 
         private void button2_Click(object sender, EventArgs e)
