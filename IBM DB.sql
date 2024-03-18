@@ -56,3 +56,9 @@ INSERT INTO razpisaniq_firmi (id_marshrut, id_firma)
 VALUES 
     (1,1),(2,2),(3,3),(4,4),(5,5),
     (6,1),(7,2),(8,3),(9,4),(10,5);
+
+
+USE razpisanie;
+
+ALTER TABLE razpisaniq_firmi
+ADD PRIMARY KEY (id_marshrut);

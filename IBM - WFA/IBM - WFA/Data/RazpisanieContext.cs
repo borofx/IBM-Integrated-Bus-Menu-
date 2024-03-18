@@ -62,9 +62,10 @@ public partial class RazpisanieContext : DbContext
 
         modelBuilder.Entity<RazpisaniqFirmi>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("razpisaniq_firmi");
+
+            entity.HasKey(e => e.IdMarshrut).HasName("PK__razpisan__E3552D73DB9D2B7B");
+
+            entity.ToTable("razpisaniq_firmi");
 
             entity.Property(e => e.IdFirma).HasColumnName("id_firma");
             entity.Property(e => e.IdMarshrut).HasColumnName("id_marshrut");

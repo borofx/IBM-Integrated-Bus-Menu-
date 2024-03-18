@@ -371,7 +371,7 @@ namespace IBM___WFA.Business
         {
             using(context=new RazpisanieContext())
             {
-                var Do_Exist = context.RazpisaniqFirmis.Find(razpisanieFirma);
+                var Do_Exist = context.RazpisaniqFirmis.Find(razpisanieFirma.IdMarshrut);
 
                 if(Do_Exist == null)
                 {
@@ -390,12 +390,15 @@ namespace IBM___WFA.Business
         //метод за изтриване на информация за разписание-фирма
         public void DeleteRazpisanieFirma(int IdMarshrut)
         {
-            if (RazpisanieFirm_Exist(IdMarshrut))
+            using(context = new RazpisanieContext())
             {
-                var temp=context.RazpisaniqFirmis.Find(IdMarshrut);
-                context.RazpisaniqFirmis.Remove(temp);
+                var temp = context.RazpisaniqFirmis.Find(IdMarshrut);
+
+                if (temp != null)
+                    context.RazpisaniqFirmis.Remove(temp);
                 context.SaveChanges();
             }
+            
         }
 
 
@@ -406,14 +409,16 @@ namespace IBM___WFA.Business
         {
             using(context=new RazpisanieContext())
             {
-                if (RazpisanieFirm_Exist(razpisanieFirma.IdMarshrut))
-                {
-                    var item = context.RazpisaniqFirmis.Find(razpisanieFirma.IdMarshrut);
+                var item = context.RazpisaniqFirmis.Find(razpisanieFirma.IdMarshrut);
 
+                if(item != null)
+                {
                     context.Entry(item).CurrentValues.SetValues(razpisanieFirma);
                     context.SaveChanges();
                 }
             }
+
+                
         }
 
 
