@@ -35,6 +35,8 @@
             button3 = new Button();
             button4 = new Button();
             button5 = new Button();
+            label1 = new Label();
+            comboBox1 = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -112,10 +114,34 @@
             button5.UseVisualStyleBackColor = false;
             button5.Click += button5_Click;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label1.Location = new Point(371, 39);
+            label1.Name = "label1";
+            label1.Size = new Size(94, 23);
+            label1.TabIndex = 15;
+            label1.Text = "Order By";
+            // 
+            // comboBox1
+            // 
+            comboBox1.BackColor = SystemColors.Control;
+            comboBox1.FlatStyle = FlatStyle.System;
+            comboBox1.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "IdFirma", "Ime" });
+            comboBox1.Location = new Point(474, 36);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(212, 31);
+            comboBox1.TabIndex = 14;
+            // 
             // Companies
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(label1);
+            Controls.Add(comboBox1);
             Controls.Add(button5);
             Controls.Add(button4);
             Controls.Add(button3);
@@ -127,6 +153,7 @@
             Load += Companies_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -137,5 +164,7 @@
         private Button button3;
         private Button button4;
         private Button button5;
+        private Label label1;
+        private ComboBox comboBox1;
     }
 }

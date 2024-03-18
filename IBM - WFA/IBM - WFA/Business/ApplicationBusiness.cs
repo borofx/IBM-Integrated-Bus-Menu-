@@ -100,6 +100,16 @@ namespace IBM___WFA.Business
         }
 
 
+        //метод за извличане на всички фирми сортирани по ид
+        public List<Firmi> GetAllFirmisSortedById()
+        {
+            using (context = new RazpisanieContext())
+            {
+                return context.Firmis.OrderBy(x => x.IdFirma).ToList();
+            }
+        }
+
+
         //методи за проверка дали фирма съществува
         public bool Firm_Exist(string name)
         {
@@ -269,6 +279,19 @@ namespace IBM___WFA.Business
 
 
 
+        //метод за сортиране на разписанията по ид
+        public List<Razpisaniq> SortRazpisaniqByIdMarshrut()
+        {
+            using (context = new RazpisanieContext())
+            {
+                return context.Razpisaniqs.OrderBy(x => x.IdMarshrut).ToList();
+            }
+        }
+
+
+
+
+
 
         //метод за сортиране на разписанията по град на заминаване
         public List<Razpisaniq> SortRazpisaniqByZaminavaOt()
@@ -311,5 +334,124 @@ namespace IBM___WFA.Business
             }
         }
 
+
+
+
+
+
+
+        //---------------------------------------------------------------------------
+
+
+
+
+        //методи за таблица разписания-фирми
+
+
+
+        //метод за проверка дали разписание-фирма съществува
+        public bool RazpisanieFirm_Exist(int IdMarshrut)
+        {
+            using (context = new RazpisanieContext())
+            {
+                bool exist = false;
+                foreach (var item in context.RazpisaniqFirmis)
+                {
+                    if (item.IdMarshrut == IdMarshrut) exist = true;
+                }
+                return exist;
+            }
+
+        }
+
+
+
+        //метод за добавяне на информация на разписание-фирма
+        public void AddRazpisanieFirm(RazpisaniqFirmi razpisanieFirma)
+        {
+            using(context=new RazpisanieContext())
+            {
+                var Do_Exist = context.RazpisaniqFirmis.Find(razpisanieFirma);
+
+                if(Do_Exist == null)
+                {
+                    context.RazpisaniqFirmis.Add(razpisanieFirma);
+                    context.SaveChanges();
+                }
+                
+
+            }
+        }
+
+
+
+
+
+        //метод за изтриване на информация за разписание-фирма
+        public void DeleteRazpisanieFirma(int IdMarshrut)
+        {
+            if (RazpisanieFirm_Exist(IdMarshrut))
+            {
+                var temp=context.RazpisaniqFirmis.Find(IdMarshrut);
+                context.RazpisaniqFirmis.Remove(temp);
+                context.SaveChanges();
+            }
+        }
+
+
+
+
+        //метод за обновяване на информация за разписание-фирма
+        public void UpdateRazpisanieFirma(RazpisaniqFirmi razpisanieFirma)
+        {
+            using(context=new RazpisanieContext())
+            {
+                if (RazpisanieFirm_Exist(razpisanieFirma.IdMarshrut))
+                {
+                    var item = context.RazpisaniqFirmis.Find(razpisanieFirma.IdMarshrut);
+
+                    context.Entry(item).CurrentValues.SetValues(razpisanieFirma);
+                    context.SaveChanges();
+                }
+            }
+        }
+
+
+
+
+        //метод за извличане на всички записи от RazpisaniqFirmi
+        public List<RazpisaniqFirmi> GetAllRazpisaniqFirmis()
+        {
+            using(context=new RazpisanieContext())
+            {
+                return context.RazpisaniqFirmis.ToList();
+            }
+        }
+
+
+
+
+
+
+        //метод за извличане на всички записи от RazpisaniqFirmi сортирани по IdMarshrut
+        public List<RazpisaniqFirmi> OrderRazpisaniqFirmiByIdMarshrut()
+        {
+            using (context = new RazpisanieContext())
+            {
+                return context.RazpisaniqFirmis.OrderBy(a=>a.IdMarshrut).ToList();
+            }
+        }
+
+
+
+
+        //метод за извличане на всички записи от RazpisaniqFirmi сортирани по IdFirma
+        public List<RazpisaniqFirmi> OrderRazpisaniqFirmiByIdFirma()
+        {
+            using (context = new RazpisanieContext())
+            {
+                return context.RazpisaniqFirmis.OrderBy(a => a.IdFirma).ToList();
+            }
+        }
     }
 }

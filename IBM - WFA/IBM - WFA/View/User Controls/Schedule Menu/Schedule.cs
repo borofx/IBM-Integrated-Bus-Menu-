@@ -101,6 +101,18 @@ namespace IBM___WFA.User_Controls.Schedule_Menu
 
 
 
+
+        //метод за обновяване на dataGridView по ид на маршрут
+        private void UpdateGridByIdMarshrut()
+        {
+            dataGridView1.DataSource = controller.SortRazpisaniqByIdMarshrut();
+            dataGridView1.ReadOnly = true;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            SetSizeOfDataGridView();
+        }
+
+
+
         //метод за задаване на размерите на всяка колона в dataGridView
         private void SetSizeOfDataGridView()
         {
@@ -119,10 +131,12 @@ namespace IBM___WFA.User_Controls.Schedule_Menu
             switch (comboBox1.SelectedIndex)
             {
                 case 0:
-                    return OptionsForSorting.ZaminavaOt;
+                    return OptionsForSorting.IdMarshrut;
                 case 1:
-                    return OptionsForSorting.PristigaV;
+                    return OptionsForSorting.ZaminavaOt;
                 case 2:
+                    return OptionsForSorting.PristigaV;
+                case 3:
                     return OptionsForSorting.ChasPristigane;
                 default:
                     return OptionsForSorting.ChasZaminavane;
@@ -132,7 +146,7 @@ namespace IBM___WFA.User_Controls.Schedule_Menu
         //бутон за добавяне на разписание
         private void button1_Click(object sender, EventArgs e)
         {
-            string Start_From = Interaction.InputBox("Enter from where does it stars");
+            string Start_From = Interaction.InputBox("Enter from where does it starts");
 
             if (Start_From != null && Start_From != "")
             {
@@ -230,7 +244,7 @@ namespace IBM___WFA.User_Controls.Schedule_Menu
             {
                 if (controller.Schedule_Exist(id))
                 {
-                    string Start_From = Interaction.InputBox("Enter from where does it stars");
+                    string Start_From = Interaction.InputBox("Enter from where does it starts");
 
                     if (Start_From != null && Start_From != "")
                     {
@@ -302,6 +316,10 @@ namespace IBM___WFA.User_Controls.Schedule_Menu
         {
             switch (CheckOptionForSorting())
             {
+                case OptionsForSorting.IdMarshrut:
+                    UpdateGridByIdMarshrut();
+                    break;
+
                 case OptionsForSorting.ZaminavaOt:
                     UpdateGridByZaminavaOt();
                     break;
@@ -327,6 +345,12 @@ namespace IBM___WFA.User_Controls.Schedule_Menu
         {
             switch (CheckOptionForSorting())
             {
+
+                case OptionsForSorting.IdMarshrut:
+                    UpdateGridByIdMarshrut();
+                    ReverseDataGridView(ref dataGridView1);
+                    break;
+
                 case OptionsForSorting.ZaminavaOt:
                     UpdateGridByZaminavaOt();
                     ReverseDataGridView(ref dataGridView1);
@@ -353,6 +377,7 @@ namespace IBM___WFA.User_Controls.Schedule_Menu
         //списък от възможни опции за сортиране
         enum OptionsForSorting
         {
+            IdMarshrut,
             ZaminavaOt,
             PristigaV,
             ChasZaminavane,

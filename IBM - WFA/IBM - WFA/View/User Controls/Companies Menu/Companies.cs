@@ -20,6 +20,7 @@ namespace IBM___WFA.User_Controls.Companies_Menu
         {
             InitializeComponent();
             UpdateGrid();
+            comboBox1.SelectedIndex = 0;
         }
 
         //метод за ъпдейтване на dataGridView 
@@ -33,7 +34,7 @@ namespace IBM___WFA.User_Controls.Companies_Menu
         }
 
         //метод за ъпдейтване на dataGridView по име възходящо
-        private void UpdateGridAsc()
+        private void UpdateGridNameAsc()
         {
 
             dataGridView1.DataSource = controller.GetAllFirmisSortedByName();
@@ -41,6 +42,20 @@ namespace IBM___WFA.User_Controls.Companies_Menu
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             SetSizeOfDataGridView();
         }
+
+
+
+        //метод за ъпдейтване на dataGridView по id
+        private void UpdateGridById()
+        {
+
+            dataGridView1.DataSource = controller.GetAllFirmisSortedById();
+            dataGridView1.ReadOnly = true;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            SetSizeOfDataGridView();
+        }
+
+
 
         //метод за обръщане на редовете в dataGridView
         private void ReverseDataGridView(ref DataGridView dgv)
@@ -64,6 +79,24 @@ namespace IBM___WFA.User_Controls.Companies_Menu
         }
 
 
+
+
+        //метод, който проверява каква опция за сортиране е избрал потребителя
+        private OptionsForSorting CheckOptionForSorting()
+        {
+            switch (comboBox1.SelectedIndex)
+            {
+                case 0:
+                    return OptionsForSorting.IdFirma;
+
+                default:
+                    return OptionsForSorting.Ime;
+                
+            }
+        }
+
+
+
         //метод за задаване на размерите на всяка колона в dataGridView
         private void SetSizeOfDataGridView()
         {
@@ -74,13 +107,35 @@ namespace IBM___WFA.User_Controls.Companies_Menu
 
         private void button4_Click(object sender, EventArgs e)
         {
-            UpdateGridAsc();
+
+            switch (CheckOptionForSorting())
+            {
+                case OptionsForSorting.IdFirma:
+                    UpdateGridById();
+                    break;
+
+                case OptionsForSorting.Ime:
+                    UpdateGridNameAsc();
+                    break;
+            }
+            
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            UpdateGridAsc();
-            ReverseDataGridView(ref dataGridView1);
+            switch (CheckOptionForSorting())
+            {
+                case OptionsForSorting.IdFirma:
+                    UpdateGridById();
+                    ReverseDataGridView(ref dataGridView1);
+                    break;
+
+                case OptionsForSorting.Ime:
+                    UpdateGridNameAsc();
+                    ReverseDataGridView(ref dataGridView1);
+                    break;
+            }
+            
         }
 
 
@@ -168,6 +223,16 @@ namespace IBM___WFA.User_Controls.Companies_Menu
         private void Companies_Load(object sender, EventArgs e)
         {
 
+        }
+
+
+
+
+        //списък от възможни подреждания
+        enum OptionsForSorting
+        {
+            IdFirma,
+            Ime
         }
     }
 }

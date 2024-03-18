@@ -9,7 +9,9 @@ public partial class RazpisaniqFirmi
 
     public int IdFirma { get; set; }
 
+    
     public virtual Firmi IdFirmaNavigation { get; set; } = null!;
 
     public virtual Razpisaniq IdMarshrutNavigation { get; set; } = null!;
+    
 }
