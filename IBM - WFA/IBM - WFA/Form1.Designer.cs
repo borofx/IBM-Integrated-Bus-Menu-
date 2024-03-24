@@ -68,7 +68,7 @@
             button5.Name = "button5";
             button5.Size = new Size(227, 61);
             button5.TabIndex = 2;
-            button5.Text = "     Info";
+            button5.Text = "    Info";
             button5.TextImageRelation = TextImageRelation.ImageBeforeText;
             button5.UseVisualStyleBackColor = false;
             button5.Click += button5_Click;
@@ -102,7 +102,7 @@
             button3.Name = "button3";
             button3.Size = new Size(227, 61);
             button3.TabIndex = 1;
-            button3.Text = "     Schedule";
+            button3.Text = "   Schedule";
             button3.TextImageRelation = TextImageRelation.ImageBeforeText;
             button3.UseVisualStyleBackColor = false;
             button3.Click += button3_Click;
@@ -127,7 +127,7 @@
             button2.Name = "button2";
             button2.Size = new Size(227, 61);
             button2.TabIndex = 0;
-            button2.Text = "     Companies";
+            button2.Text = "  Companies";
             button2.TextImageRelation = TextImageRelation.ImageBeforeText;
             button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
